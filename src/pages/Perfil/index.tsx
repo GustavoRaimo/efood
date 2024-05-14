@@ -2,67 +2,33 @@ import Header from '../../components/Header'
 import Apresentacao from '../../components/Apresentacao'
 import FoodList from '../../components/FoodList'
 import Footer from '../../components/Footer'
-import FoodModel from '../../models/Food'
-import pizza from '../../assets/pizza.png'
+import { Restaurante } from '../Home'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
-const foods: FoodModel[] = [
-  {
-    id: 1,
-    foodTitle: 'Pizza Marguerita',
-    foodDescription:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    foodPhoto: pizza,
-    foodPhotoAlt: 'Pizza marguerita'
-  },
-  {
-    id: 2,
-    foodTitle: 'Pizza Marguerita',
-    foodDescription:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    foodPhoto: pizza,
-    foodPhotoAlt: 'Pizza marguerita'
-  },
-  {
-    id: 3,
-    foodTitle: 'Pizza Marguerita',
-    foodDescription:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    foodPhoto: pizza,
-    foodPhotoAlt: 'Pizza marguerita'
-  },
-  {
-    id: 4,
-    foodTitle: 'Pizza Marguerita',
-    foodDescription:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    foodPhoto: pizza,
-    foodPhotoAlt: 'Pizza marguerita'
-  },
-  {
-    id: 5,
-    foodTitle: 'Pizza Marguerita',
-    foodDescription:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    foodPhoto: pizza,
-    foodPhotoAlt: 'Pizza marguerita'
-  },
-  {
-    id: 6,
-    foodTitle: 'Pizza Marguerita',
-    foodDescription:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    foodPhoto: pizza,
-    foodPhotoAlt: 'Pizza marguerita'
+const Perfil = () => {
+  const { id } = useParams()
+  const [foodList, setFoodList] = useState<Restaurante[]>([])
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setFoodList([res]))
+      .catch((error) => console.error('Erro ao carregar dados:', error))
+  }, [id])
+
+  if (foodList.length === 0) {
+    return <h3>Carregando...</h3>
   }
-]
 
-const Perfil = () => (
-  <>
-    <Header itens={0} />
-    <Apresentacao />
-    <FoodList foods={foods} />
-    <Footer />
-  </>
-)
+  return (
+    <>
+      <Header itens={0} />
+      <Apresentacao />
+      <FoodList foods={foodList} />
+      <Footer />
+    </>
+  )
+}
 
 export default Perfil

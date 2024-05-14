@@ -4,9 +4,11 @@ import { cores } from '../../styles'
 export const Card = styled.div`
   background-color: ${cores.branco};
   border: solid 1px ${cores.vermelho};
+
   .ContainerTop {
     display: flex;
     justify-content: space-between;
+    padding: 8px;
   }
   position: relative;
 `
@@ -41,4 +43,9 @@ export const Categories = styled.div`
   position: absolute;
   top: 0;
   right: 16px;
+`
+export const Photo = styled.img`
+  width: 100%;
+  height: 217px;
+  object-fit: cover;
 `

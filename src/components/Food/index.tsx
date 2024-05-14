@@ -4,21 +4,24 @@ export type Props = {
   FoodPhoto: string
   FoodTitle: string
   FoodDescription: string
-  FoodPhotoAlt: string
+  FoodItSuits?: string
 }
 
-const Food = ({
-  FoodPhoto,
-  FoodTitle,
-  FoodDescription,
-  FoodPhotoAlt
-}: Props) => (
-  <Card>
-    <Photo src={FoodPhoto} alt={FoodPhotoAlt} />
-    <Title>{FoodTitle}</Title>
-    <Description>{FoodDescription}</Description>
-    <AddCartButton>Adicionar ao carrinho</AddCartButton>
-  </Card>
-)
+const Food = ({ FoodPhoto, FoodTitle, FoodDescription }: Props) => {
+  const getDescribe = (describe: string) => {
+    if (describe.length > 215) {
+      return describe.slice(0, 212) + ' ...'
+    }
+    return describe
+  }
+  return (
+    <Card>
+      <Photo src={FoodPhoto} alt={FoodTitle} />
+      <Title>{FoodTitle}</Title>
+      <Description>{getDescribe(FoodDescription)}</Description>
+      <AddCartButton>Mais detalhes</AddCartButton>
+    </Card>
+  )
+}
 
 export default Food

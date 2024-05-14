@@ -7,10 +7,15 @@ export const Card = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: column;
+  width: 320px;
+  height: 338px;
 `
 
 export const Photo = styled.img`
   margin: 8px;
+  max-width: 100%;
+  width: 304px;
+  height: 167px;
 `
 
 export const Title = styled.h3`
@@ -31,4 +36,5 @@ export const AddCartButton = styled.button`
   padding: 4px 0;
   margin: 8px;
   font-weight: bold;
+  cursor: pointer;
 `
