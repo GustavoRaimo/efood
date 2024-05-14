@@ -1,13 +1,19 @@
+import { Restaurante } from '../../pages/Home'
 import {
   ApresentacaoContainer,
   ApresentacaoCategoria,
   ApresentacaoPrato
 } from './styles'
-const Apresentacao = () => (
-  <ApresentacaoContainer>
+
+export type Props = {
+  restaurant: Restaurante
+}
+
+const Apresentacao = ({ restaurant }: Props) => (
+  <ApresentacaoContainer style={{ backgroundImage: `url(${restaurant.capa})` }}>
     <div className="container">
-      <ApresentacaoCategoria>Italiana</ApresentacaoCategoria>
-      <ApresentacaoPrato>La Dolce Vita Trattoria</ApresentacaoPrato>
+      <ApresentacaoCategoria>{restaurant.tipo}</ApresentacaoCategoria>
+      <ApresentacaoPrato>{restaurant.titulo}</ApresentacaoPrato>
     </div>
   </ApresentacaoContainer>
 )

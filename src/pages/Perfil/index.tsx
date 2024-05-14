@@ -24,7 +24,7 @@ const Perfil = () => {
   return (
     <>
       <Header itens={0} />
-      <Apresentacao />
+      <Apresentacao restaurant={foodList[0]} />
       <FoodList foods={foodList} />
       <Footer />
     </>
