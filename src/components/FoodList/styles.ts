@@ -88,6 +88,7 @@ export const AddCartButton = styled.button`
   border: none;
   padding: 4px 7px;
   font-weight: 700;
+  max-height: 100%;
   text-decoration: none;
   text-align: center;
   font-size: 14px;
