@@ -21,7 +21,7 @@ const Restaurant = ({
 }: Props) => {
   return (
     <Card>
-      <Photo src={RestaurantPhoto} alt="Hioki sushi" />
+      <Photo src={RestaurantPhoto} alt={RestaurantTitle} />
       <Categories>
         {RestaurantCategories.map((info) => {
           if (info) {

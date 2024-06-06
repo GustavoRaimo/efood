@@ -2,30 +2,35 @@ import Header from '../../components/Header'
 import Apresentacao from '../../components/Apresentacao'
 import FoodList from '../../components/FoodList'
 import Footer from '../../components/Footer'
-import { Restaurante } from '../Home'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import Cart from '../../components/Cart'
+import { useGetRestaurantSelectedQuery } from '../../services/api'
+
+type RestaurantParams = {
+  id: string
+}
 
 const Perfil = () => {
-  const { id } = useParams()
-  const [foodList, setFoodList] = useState<Restaurante[]>([])
+  const { id } = useParams() as RestaurantParams
+  const { data: restaurantFood, isLoading } = useGetRestaurantSelectedQuery(id)
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setFoodList([res]))
-      .catch((error) => console.error('Erro ao carregar dados:', error))
-  }, [id])
+  if (isLoading) {
+    return <div>Carregando...</div>
+  }
 
-  if (foodList.length === 0) {
-    return <h3>Carregando...</h3>
+  if (!restaurantFood) {
+    return <div>Erro ao carregar os dados.</div>
   }
 
   return (
     <>
-      <Header itens={0} />
-      <Apresentacao restaurant={foodList[0]} />
-      <FoodList foods={foodList} />
+      <Header />
+      <Apresentacao restaurant={restaurantFood} />
+      <FoodList
+        foods={[restaurantFood]}
+        order={{ id: 0, nome: '', foto: '', preco: 0 }}
+      />
+      <Cart />
       <Footer />
     </>
   )

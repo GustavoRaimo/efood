@@ -13,11 +13,14 @@ import {
 } from './styles'
 import buttonClose from '../../assets/button-close.png'
 import Food from '../../components/Food'
-import { Restaurante } from '../../pages/Home'
+import { Pedido, Restaurante } from '../../pages/Home'
 import { useState } from 'react'
+import { add, open } from '../../store/reducers/cart'
+import { useDispatch } from 'react-redux'
 
 export type Props = {
   foods: Restaurante[]
+  order: Pedido
 }
 
 export const priceFormat = (price: number) => {
@@ -35,6 +38,21 @@ const FoodList = ({ foods }: Props) => {
   const [foodPhotoAlt, setFoodPhotoAlt] = useState('')
   const [foodServe, setFoodServe] = useState('')
   const [foodPrice, setFoodPrice] = useState(0)
+  const [foodId, setFoodId] = useState(0)
+
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    const newOrder: Pedido = {
+      id: foodId,
+      nome: foodTitle,
+      foto: foodPhoto,
+      preco: foodPrice
+    }
+    dispatch(add(newOrder))
+    setShowModal(false)
+    dispatch(open())
+  }
 
   return (
     <>
@@ -52,6 +70,7 @@ const FoodList = ({ foods }: Props) => {
                   setFoodPrice(item.preco)
                   setFoodPhotoAlt(item.nome)
                   setFoodPhoto(item.foto)
+                  setFoodId(item.id)
                 }}
               >
                 <div>
@@ -78,7 +97,7 @@ const FoodList = ({ foods }: Props) => {
               {foodDescription}
               <p>Serve: de {foodServe}</p>
             </FoodDescription>
-            <AddCartButton>
+            <AddCartButton onClick={addToCart}>
               Adicionar ao carrinho - {priceFormat(foodPrice)}
             </AddCartButton>
           </ModalContainer>
