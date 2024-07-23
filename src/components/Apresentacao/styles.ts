@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 import ApresentacaoFundo from '../../assets/hero-trattoria.png'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const ApresentacaoContainer = styled.div`
+  @media (max-width: ${breakpoints.mobile}) {
+    height: 100%;
+  }
   background-image: url(${ApresentacaoFundo});
   height: 280px;
   background-repeat: no-repeat;
@@ -10,6 +13,10 @@ export const ApresentacaoContainer = styled.div`
   .container {
     max-width: 1024px;
     margin: 0 auto;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      padding: 0 10px;
+    }
   }
 `
 

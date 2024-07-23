@@ -21,8 +21,8 @@ export const Title = styled.h3`
 export const Description = styled.p`
   font-size: 14px;
   font-weight: regular;
-  margin-top: 8px;
-  margin-left: 8px;
+  margin: 16px 8px;
+  max-width: 100%;
 `
 export const Rate = styled.div`
   display: flex;

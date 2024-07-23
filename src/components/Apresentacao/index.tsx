@@ -1,4 +1,3 @@
-import { Restaurante } from '../../pages/Home'
 import {
   ApresentacaoContainer,
   ApresentacaoCategoria,

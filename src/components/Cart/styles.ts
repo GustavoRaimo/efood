@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import trashIcon from '../../assets/lixeira.png'
 
 export const Overlay = styled.div`
@@ -32,6 +32,10 @@ export const SideBar = styled.aside`
   max-width: 360px;
   width: 100%;
   background-color: ${cores.vermelho};
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 90%;
+  }
 `
 
 export const CartItem = styled.li`
@@ -47,6 +51,10 @@ export const CartItem = styled.li`
     width: 80px;
     height: 80px;
     object-fit: cover;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    max-width: 100%;
   }
 `
 
@@ -68,6 +76,20 @@ export const FinishCartButton = styled.a`
   font-weight: 700;
   background-color: ${cores.rosa};
   color: ${cores.vermelho};
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+`
+
+export const SubmitCartButton = styled.button`
+  background-color: ${cores.rosa};
+  color: ${cores.vermelho};
+  border: none;
+  padding: 4px;
+  font-weight: 700;
   text-decoration: none;
   text-align: center;
   font-size: 14px;

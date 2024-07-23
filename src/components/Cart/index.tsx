@@ -1,3 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux'
+
+import { RootReducer } from '../../store'
+import { close, openCheckout, remove } from '../../store/reducers/cart'
+import { priceFormat } from '../FoodList'
+
 import {
   TrashButton,
   CartContainer,
@@ -9,10 +15,6 @@ import {
   InfosItem,
   FinishCartButton
 } from './styles'
-import { close, remove } from '../../store/reducers/cart'
-import { priceFormat } from '../FoodList'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
 
 const Cart = () => {
   const { isOpen, order } = useSelector((state: RootReducer) => state.cart)
@@ -29,6 +31,15 @@ const Cart = () => {
     return order.reduce((acumulator, actualValue) => {
       return (acumulator += actualValue.preco)
     }, 0)
+  }
+  const handleCheckout = () => {
+    if (order.length > 0) {
+      dispatch(openCheckout())
+    } else {
+      alert(
+        'Seu carrinho está vazio. Adicione itens antes de prosseguir com o checkout.'
+      )
+    }
   }
 
   return (
@@ -53,7 +64,9 @@ const Cart = () => {
               <p>Valor total</p>
               <span>{priceFormat(getTotalPrice())}</span>
             </CartPrice>
-            <FinishCartButton>Continuar com a entrega</FinishCartButton>
+            <FinishCartButton onClick={handleCheckout}>
+              Continuar com a entrega
+            </FinishCartButton>
           </CartStage>
         </SideBar>
       </CartContainer>

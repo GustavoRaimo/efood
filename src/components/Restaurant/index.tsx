@@ -1,6 +1,7 @@
 import Button from '../Button'
-import { Card, Title, Description, Rate, Categories, Photo } from './styles'
 import Star from '../../assets/estrela.png'
+
+import { Card, Title, Description, Rate, Categories, Photo } from './styles'
 
 type Props = {
   RestaurantTitle: string

@@ -1,7 +1,7 @@
 import { Container, List } from './styles'
 
 import Product from '../Restaurant'
-import { Restaurante } from '../../pages/Home'
+
 import { useState } from 'react'
 
 export type Props = {

@@ -1,3 +1,10 @@
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+
+import buttonClose from '../../assets/button-close.png'
+import Food from '../../components/Food'
+import { add, open } from '../../store/reducers/cart'
+
 import {
   List,
   Container,
@@ -11,12 +18,6 @@ import {
   AddCartButton,
   CloseIcon
 } from './styles'
-import buttonClose from '../../assets/button-close.png'
-import Food from '../../components/Food'
-import { Pedido, Restaurante } from '../../pages/Home'
-import { useState } from 'react'
-import { add, open } from '../../store/reducers/cart'
-import { useDispatch } from 'react-redux'
 
 export type Props = {
   foods: Restaurante[]

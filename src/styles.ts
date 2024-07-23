@@ -20,3 +20,9 @@ body{
   color: ${cores.vermelho};
 }
 `
+
+export const breakpoints = {
+  desktop: '1024px',
+  tablet: '821px',
+  mobile: '430px'
+}

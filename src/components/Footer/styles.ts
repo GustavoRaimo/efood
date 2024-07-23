@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const FooterStyle = styled.footer`
   background-color: ${cores.rosa};
@@ -24,4 +24,9 @@ export const Disclaimer = styled.p`
   width: 100%;
   font-size: 10px;
   font-weight: regular;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    margin: 30px auto;
+    width: 80%;
+  }
 `
